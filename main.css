@@ -1,5 +1,21 @@
 body {
-  background-color: darkgreen !important;
+
+  background-image: url(https://www.telegraph.co.uk/content/dam/Travel/2018/September/El-Yunque-morning-mist-iStock-535499464.jpg?imwidth=1400);
+  
+}
+
+h1 {
+  font-family: Junge;
+  font-size: 50px !important;
+  font-weight: bolder;
+  background-color: darkgreen;
+  color: white;
+  padding-left: 10px;  
+}
+
+.navbar {
+  font-family: Junge;
+  background-color: darkgreen !important;  
 }
 
 .row {
@@ -22,6 +38,8 @@ input {
 }
 
 .card {
+  font-family: Junge;  
+
   max-width: 350px;
   height: 500px;
   margin: 15px 15px;
@@ -31,4 +49,11 @@ input {
 
 .container-fluid {
   margin-top: 50px;
-}
+  }
+
+ .container {
+   background-color: darkgreen;
+   margin: 25px 25px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+ } 
