@@ -13,9 +13,31 @@ h1 {
   padding-left: 10px;  
 }
 
+h2 {
+  font-family: Junge;
+  background-color: darkgreen;
+  color: white;
+  padding-left: 10px;
+  margin-top: 50px !important;
+  text-align: center;
+}
+
+p {
+  font-family: Junge;
+  background-color: darkgreen;
+  color: white;
+  padding-left: 20px; 
+  padding-right: 20px;
+  font-size: large;  
+ 
+
+
+}
+
 .navbar {
   font-family: Junge;
-  background-color: darkgreen !important;  
+  background-color: darkgreen !important;
+  font-weight: bold;  
 }
 
 .row {
