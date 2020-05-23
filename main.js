@@ -154,6 +154,23 @@ const healDino = (event) => {
   dinoHospitalBuilder(dinos)  
 };
 
+const boneyardBuilder = (arr) => {
+  let domString = '';  
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].health === 0){
+    domString += `
+      <div class="card">
+        <img class="card-img-top" src="https://vignette.wikia.nocookie.net/animalcrossing/images/a/aa/FossilIco2.png/revision/latest?cb=20130822183911" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">${arr[i].name}</h5>
+          <h6>Species: ${arr[i].type} Health: ${arr[i].health} out of 100</h6>
+          <h6>Owner:${arr[i].owner}</h6>     
+        </div>
+      </div>`   
+    }
+  };
+  printToDom('boneyard',domString)
+};
 
 const createDino = (event) => {
   tempdino = {
@@ -216,6 +233,9 @@ const init = () => {
   };
   if (document.getElementById('dinoHosp')){
     dinoHospitalBuilder(dinos)
+  };
+  if (document.getElementById('boneyard')){
+    boneyardBuilder(dinos)
   };
   clickEvents();
 };
