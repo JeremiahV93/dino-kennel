@@ -92,6 +92,8 @@ const dinos = [
   },
 ];
 
+const adventures = ['Scavenge for food', 'Find Selter', 'Fight off predators']
+
 const printToDom = (selector, textToPrint) => {
   const selectedDiv = document.querySelector(`#${selector}`);
   selectedDiv.innerHTML = textToPrint
@@ -107,12 +109,30 @@ const dinoKennelBuilder = (arr) => {
         <div class="card-body">
           <h5 class="card-title">${arr[i].name}</h5>
           <h6>Species: ${arr[i].type} Health: ${arr[i].health} out of 100</h6>
-          <h6>Owner:${arr[i].owner}</h6>     
+          <h6>Owner:${arr[i].owner}</h6>
+          <h6>Adventures: ${arr[i].adventures}</h6>
+          <button type="button" id="${arr[i].id}" class="btn btn-success">Send on a Quest!</button>
+     
         </div>
       </div>`   
     }
   };
   printToDom('dinoPen',domString)
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].health !== 0) {
+      document.querySelector(`#${arr[i].id}`).addEventListener('click', sendQuest)
+    }
+  };
+};
+
+const sendQuest = (event) => {
+  for (let i = 0; i < dinos.length; i++) {
+    if (event.target.id === dinos[i].id) {
+      dinos[i].adventures += `${adventures[Math.floor(Math.random() *adventures.length)]}, `
+    }    
+  }
+  dinoKennelBuilder(dinos)
+
 };
 
 const dinoHospitalBuilder = (arr) => {
@@ -126,7 +146,7 @@ const dinoHospitalBuilder = (arr) => {
           <h5 class="card-title">${arr[i].name}</h5>
           <h6>Species: ${arr[i].type} Health: ${arr[i].health} out of 100</h6>
           <h6>Owner:${arr[i].owner}</h6> 
-          <button type="button" id="${arr[i].id}" class="btn btn-success">Medacine</button>
+          <button type="button" id="${arr[i].id}" class="btn btn-success">Medecine</button>
     
         </div>
       </div>` 
