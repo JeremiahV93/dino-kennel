@@ -98,9 +98,7 @@ const printToDom = (selector, textToPrint) => {
 };
 
 const dinoKennelBuilder = (arr) => {
-  let domString = '';
-
-  
+  let domString = '';  
   for (let i = 0; i < arr.length; i++) {
     if(arr[i].health !== 0){
     domString += `
@@ -116,13 +114,65 @@ const dinoKennelBuilder = (arr) => {
   };
   printToDom('dinoPen',domString)
 };
+
+const createDino = (event) => {
+  tempdino = {
+    id: '',
+    name: '',
+    type: '',
+    age: 0,
+    owner: '',
+    adventures: [],
+    health: 0,
+    imageUrl:''
+  }
+
+  tempdino.id = `dino${dinos.length+1}`
+
+  if (document.getElementById('dinoName').value !== '') {
+    tempdino.name = document.getElementById('dinoName').value
+  }
+  tempdino.type = document.getElementById('dinoType').value 
+  tempdino.age = document.getElementById('dinoAge').value 
+  tempdino.owner = document.getElementById('dinoOwner').value
+  tempdino.imageUrl = document.getElementById('dinoURL').value 
+  
+  switch (document.getElementById('dinoType').value) {
+    case 'Dino Species': alert('Please select a Species')      
+      break;
+    case 'T-Rex': tempdino.health = 75      
+      break;
+    case 'Pterodactyl': tempdino.health = 50      
+      break;
+    case 'Brachiosaurus': tempdino.health = 65      
+      break;
+    case 'Stegosaurus': tempdino.health = 52      
+      break;
+    case 'Triceratops': tempdino.health = 80      
+      break;
+    case 'Velociraptor': tempdino.health = 25      
+      break;
+  };
+
+dinos.push(tempdino)
+dinoKennelBuilder(dinos)
+
+}
+
+const clickEvents = () => {
+  if (document.getElementById('dinoName')){
+    document.querySelector('#create').addEventListener('click', createDino)
+  };
+};
+
+
  
 const init = () => {
   if (document.getElementById('dinoPen')){
     dinoKennelBuilder(dinos)
-    console.log('this works')
-
   }
+  clickEvents();
+  console.log(dinos)
 };
 
 init();
