@@ -115,6 +115,46 @@ const dinoKennelBuilder = (arr) => {
   printToDom('dinoPen',domString)
 };
 
+const dinoHospitalBuilder = (arr) => {
+  let domString = '';  
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].health !== 0){
+    domString += `
+      <div class="card">
+        <img class="card-img-top" src="${arr[i].imageUrl}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">${arr[i].name}</h5>
+          <h6>Species: ${arr[i].type} Health: ${arr[i].health} out of 100</h6>
+          <h6>Owner:${arr[i].owner}</h6> 
+          <button type="button" id="${arr[i].id}" class="btn btn-success">Medacine</button>
+    
+        </div>
+      </div>` 
+    }
+  };
+  printToDom('dinoHosp',domString)
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].health !== 0) {
+      document.querySelector(`#${arr[i].id}`).addEventListener('click', healDino)
+    }
+  };
+}
+
+const healDino = (event) => {
+  for (let i = 0; i < dinos.length; i++) {
+    if(event.target.id === dinos[i].id) {
+      if(dinos[i].health < 100){
+        dinos[i].health += 25
+        if (dinos[i].health > 100){
+          dinos[i].health = 100
+        }
+      }
+    }     
+  }
+  dinoHospitalBuilder(dinos)  
+};
+
+
 const createDino = (event) => {
   tempdino = {
     id: '',
@@ -157,12 +197,15 @@ const createDino = (event) => {
 dinos.push(tempdino)
 dinoKennelBuilder(dinos)
 
-}
+};
 
 const clickEvents = () => {
   if (document.getElementById('dinoName')){
     document.querySelector('#create').addEventListener('click', createDino)
   };
+  
+
+
 };
 
 
@@ -170,9 +213,11 @@ const clickEvents = () => {
 const init = () => {
   if (document.getElementById('dinoPen')){
     dinoKennelBuilder(dinos)
-  }
+  };
+  if (document.getElementById('dinoHosp')){
+    dinoHospitalBuilder(dinos)
+  };
   clickEvents();
-  console.log(dinos)
 };
 
 init();
