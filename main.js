@@ -1,4 +1,3 @@
-console.log('this works')
 
 const dinos = [
   {
@@ -40,7 +39,7 @@ const dinos = [
     adventures: [],
     health: 100,
     imageUrl: 'https://lh3.googleusercontent.com/proxy/_rJSL88ErOEvgHl5SInWOEolOdikwIMcKWPv9iqZzt3IUkD33WdG6d9qd8TmNJFSiszTXm7JeGQPocmB_BZErKxt__25LOpW75dmnVuy0nuY0PatX2cIYA-C'
-  },,
+  },
   {
     id: 'dino5',
     name: 'Steph',
@@ -92,3 +91,38 @@ const dinos = [
     imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOdrC7hlvBawFQ7g8vgwHcfQphX5WfeN2bth0dvc4M2oxNGdSD'
   },
 ];
+
+const printToDom = (selector, textToPrint) => {
+  const selectedDiv = document.querySelector(`#${selector}`);
+  selectedDiv.innerHTML = textToPrint
+};
+
+const dinoKennelBuilder = (arr) => {
+  let domString = '';
+
+  
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].health !== 0){
+    domString += `
+      <div class="card">
+        <img class="card-img-top" src="${arr[i].imageUrl}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">${arr[i].name}</h5>
+          <h6>Species: ${arr[i].type} Health: ${arr[i].health} out of 100</h6>
+          <h6>Owner:${arr[i].owner}</h6>     
+        </div>
+      </div>`   
+    }
+  };
+  printToDom('dinoPen',domString)
+};
+ 
+const init = () => {
+  if (document.getElementById('dinoPen')){
+    dinoKennelBuilder(dinos)
+    console.log('this works')
+
+  }
+};
+
+init();
